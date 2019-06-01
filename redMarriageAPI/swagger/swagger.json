@@ -1,0 +1,922 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "contact": {}
+    },
+    "basePath": "/api",
+    "paths": {
+        "/account/": {
+            "get": {
+                "tags": [
+                    "account"
+                ],
+                "description": "get Account",
+                "operationId": "AccountController.Get All",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "query",
+                        "description": "Filter. e.g. col1:v1,col2:v2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "fields",
+                        "description": "Fields returned. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "sortby",
+                        "description": "Sorted-by fields. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "order",
+                        "description": "Order corresponding to each sortby field, if single value, apply to all sortby fields. e.g. desc,asc ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "limit",
+                        "description": "Limit the size of result set. Must be an integer",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "offset",
+                        "description": "Start position of result set. Must be an integer",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.Account"
+                        }
+                    },
+                    "403": {
+                        "description": ""
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "account"
+                ],
+                "description": "create Account",
+                "operationId": "AccountController.Post",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for Account content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.Account"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "{int} models.Account"
+                    },
+                    "403": {
+                        "description": "body is empty"
+                    }
+                }
+            }
+        },
+        "/account/{id}": {
+            "get": {
+                "tags": [
+                    "account"
+                ],
+                "description": "get Account by id",
+                "operationId": "AccountController.Get One",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The key for staticblock",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.Account"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is empty"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "account"
+                ],
+                "description": "update the Account",
+                "operationId": "AccountController.Put",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to update",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for Account content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.Account"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.Account"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is not int"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "account"
+                ],
+                "description": "delete the Account",
+                "operationId": "AccountController.Delete",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to delete",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{string} delete success!"
+                    },
+                    "403": {
+                        "description": "id is empty"
+                    }
+                }
+            }
+        },
+        "/step/": {
+            "get": {
+                "tags": [
+                    "step"
+                ],
+                "description": "get Step",
+                "operationId": "StepController.Get All",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "query",
+                        "description": "Filter. e.g. col1:v1,col2:v2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "fields",
+                        "description": "Fields returned. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "sortby",
+                        "description": "Sorted-by fields. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "order",
+                        "description": "Order corresponding to each sortby field, if single value, apply to all sortby fields. e.g. desc,asc ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "limit",
+                        "description": "Limit the size of result set. Must be an integer",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "offset",
+                        "description": "Start position of result set. Must be an integer",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.Step"
+                        }
+                    },
+                    "403": {
+                        "description": ""
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "step"
+                ],
+                "description": "create Step",
+                "operationId": "StepController.Post",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for Step content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.Step"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "{int} models.Step"
+                    },
+                    "403": {
+                        "description": "body is empty"
+                    }
+                }
+            }
+        },
+        "/step/{id}": {
+            "get": {
+                "tags": [
+                    "step"
+                ],
+                "description": "get Step by id",
+                "operationId": "StepController.Get One",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The key for staticblock",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.Step"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is empty"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "step"
+                ],
+                "description": "update the Step",
+                "operationId": "StepController.Put",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to update",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for Step content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.Step"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.Step"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is not int"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "step"
+                ],
+                "description": "delete the Step",
+                "operationId": "StepController.Delete",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to delete",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{string} delete success!"
+                    },
+                    "403": {
+                        "description": "id is empty"
+                    }
+                }
+            }
+        },
+        "/timelines/": {
+            "get": {
+                "tags": [
+                    "timelines"
+                ],
+                "description": "get User",
+                "operationId": "UserController.Get All",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "query",
+                        "description": "Filter. e.g. col1:v1,col2:v2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "fields",
+                        "description": "Fields returned. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "sortby",
+                        "description": "Sorted-by fields. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "order",
+                        "description": "Order corresponding to each sortby field, if single value, apply to all sortby fields. e.g. desc,asc ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "limit",
+                        "description": "Limit the size of result set. Must be an integer",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "offset",
+                        "description": "Start position of result set. Must be an integer",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.User"
+                        }
+                    },
+                    "403": {
+                        "description": ""
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "timelines"
+                ],
+                "description": "create User",
+                "operationId": "UserController.Post",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for User content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.User"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "{int} models.User"
+                    },
+                    "403": {
+                        "description": "body is empty"
+                    }
+                }
+            }
+        },
+        "/timelines/{id}": {
+            "get": {
+                "tags": [
+                    "timelines"
+                ],
+                "description": "get User by id",
+                "operationId": "UserController.Get One",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The key for staticblock",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.User"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is empty"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "timelines"
+                ],
+                "description": "update the User",
+                "operationId": "UserController.Put",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to update",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for User content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.User"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.User"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is not int"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "timelines"
+                ],
+                "description": "delete the User",
+                "operationId": "UserController.Delete",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to delete",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{string} delete success!"
+                    },
+                    "403": {
+                        "description": "id is empty"
+                    }
+                }
+            }
+        },
+        "/wedding/": {
+            "get": {
+                "tags": [
+                    "wedding"
+                ],
+                "description": "get Wedding",
+                "operationId": "WeddingController.Get All",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "query",
+                        "description": "Filter. e.g. col1:v1,col2:v2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "fields",
+                        "description": "Fields returned. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "sortby",
+                        "description": "Sorted-by fields. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "order",
+                        "description": "Order corresponding to each sortby field, if single value, apply to all sortby fields. e.g. desc,asc ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "limit",
+                        "description": "Limit the size of result set. Must be an integer",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "offset",
+                        "description": "Start position of result set. Must be an integer",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.Wedding"
+                        }
+                    },
+                    "403": {
+                        "description": ""
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "wedding"
+                ],
+                "description": "create Wedding",
+                "operationId": "WeddingController.Post",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for Wedding content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.Wedding"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "{int} models.Wedding"
+                    },
+                    "403": {
+                        "description": "body is empty"
+                    }
+                }
+            }
+        },
+        "/wedding/{id}": {
+            "get": {
+                "tags": [
+                    "wedding"
+                ],
+                "description": "get Wedding by id",
+                "operationId": "WeddingController.Get One",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The key for staticblock",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.Wedding"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is empty"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "wedding"
+                ],
+                "description": "update the Wedding",
+                "operationId": "WeddingController.Put",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to update",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for Wedding content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.Wedding"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.Wedding"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is not int"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "wedding"
+                ],
+                "description": "delete the Wedding",
+                "operationId": "WeddingController.Delete",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to delete",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{string} delete success!"
+                    },
+                    "403": {
+                        "description": "id is empty"
+                    }
+                }
+            }
+        },
+        "/weddingprocess/": {
+            "get": {
+                "tags": [
+                    "weddingprocess"
+                ],
+                "description": "get WeddingProcess",
+                "operationId": "WeddingProcessController.Get All",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "query",
+                        "description": "Filter. e.g. col1:v1,col2:v2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "fields",
+                        "description": "Fields returned. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "sortby",
+                        "description": "Sorted-by fields. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "order",
+                        "description": "Order corresponding to each sortby field, if single value, apply to all sortby fields. e.g. desc,asc ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "limit",
+                        "description": "Limit the size of result set. Must be an integer",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "offset",
+                        "description": "Start position of result set. Must be an integer",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.WeddingProcess"
+                        }
+                    },
+                    "403": {
+                        "description": ""
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "weddingprocess"
+                ],
+                "description": "create WeddingProcess",
+                "operationId": "WeddingProcessController.Post",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for WeddingProcess content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.WeddingProcess"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "{int} models.WeddingProcess"
+                    },
+                    "403": {
+                        "description": "body is empty"
+                    }
+                }
+            }
+        },
+        "/weddingprocess/{id}": {
+            "get": {
+                "tags": [
+                    "weddingprocess"
+                ],
+                "description": "get WeddingProcess by id",
+                "operationId": "WeddingProcessController.Get One",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The key for staticblock",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.WeddingProcess"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is empty"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "weddingprocess"
+                ],
+                "description": "update the WeddingProcess",
+                "operationId": "WeddingProcessController.Put",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to update",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for WeddingProcess content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.WeddingProcess"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.WeddingProcess"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is not int"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "weddingprocess"
+                ],
+                "description": "delete the WeddingProcess",
+                "operationId": "WeddingProcessController.Delete",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to delete",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{string} delete success!"
+                    },
+                    "403": {
+                        "description": "id is empty"
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "models.Account": {
+            "title": "Account",
+            "type": "object"
+        },
+        "models.Step": {
+            "title": "Step",
+            "type": "object"
+        },
+        "models.Timelines": {
+            "title": "Timelines",
+            "type": "object"
+        },
+        "models.User": {
+            "title": "User",
+            "type": "object"
+        },
+        "models.Wedding": {
+            "title": "Wedding",
+            "type": "object"
+        },
+        "models.WeddingProcess": {
+            "title": "WeddingProcess",
+            "type": "object"
+        }
+    },
+    "tags": [
+        {
+            "name": "account",
+            "description": " AccountController operations for Account\n"
+        },
+        {
+            "name": "step",
+            "description": " StepController operations for Step\n"
+        },
+        {
+            "name": "timelines",
+            "description": " UserController operations for User\n"
+        },
+        {
+            "name": "wedding",
+            "description": " WeddingController operations for Wedding\n"
+        },
+        {
+            "name": "weddingprocess",
+            "description": " WeddingProcessController operations for WeddingProcess\n"
+        }
+    ]
+}
