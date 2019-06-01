@@ -1,8 +1,10 @@
 <mat-grid-list cols="1" rowHeight="1:1" gutterSize="15px" id="landGrid">
   <mat-grid-list cols="1" rowHeight="4:1" gutterSize="3px">
-    <mat-grid-tile>Videozinho Bonito</mat-grid-tile>
+    <mat-grid-tile id="landingCover">
+      <h1 id="landingTitle">CAZO</h1>
+    </mat-grid-tile>
   </mat-grid-list>
-  <mat-grid-list cols="2" rowHeight="2:1" gutterSize="15px">
+  <mat-grid-list cols="2" rowHeight="2:1" gutterSize="15px" id="landingContent">
     <mat-grid-tile>
       <mat-card>
         <mat-card-title>Faça seu casamento acontecer</mat-card-title>
@@ -19,17 +21,19 @@
         </mat-card-content>
       </mat-card>
     </mat-grid-tile>
-    <mat-grid-tile>
+    <mat-grid-tile >
+      <mat-card id="listaLanding">
         <mat-list role="list">
-            <mat-list-item role="listitem">Item 1</mat-list-item>
-            <mat-list-item role="listitem">Item 2</mat-list-item>
-            <mat-list-item role="listitem">Item 3</mat-list-item>
+            <mat-list-item role="listitem">Te ajudamos a guardar</mat-list-item>
+            <mat-list-item role="listitem">Te conectamos com quem estará pronto a fazer seu casamento acontecer</mat-list-item>
+            <mat-list-item role="listitem">Mimos para os noivos!</mat-list-item>
         </mat-list>
+      </mat-card>
     </mat-grid-tile>
   </mat-grid-list>
   <mat-grid-list cols="1" rowHeight="10:1" gutterSize="3px">
     <mat-grid-tile>
-      <button mat-button color="primary" id="btnInicioCadastro">Planejar!</button>
+      <button mat-raised-button color="primary" id="btnInicioCadastro">Planejar!</button>
     </mat-grid-tile>
   </mat-grid-list>
 </mat-grid-list>
