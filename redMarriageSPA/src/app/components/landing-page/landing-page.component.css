@@ -1,0 +1,14 @@
+mat-grid-tile {
+    background: #E6E7E8;
+}
+#landGrid{
+    margin: 15px!important;
+}
+#btnInicioCadastro{
+    padding: 20px 50px 20px 50px  !important;
+    background-color: crimson !important;
+    color: white !important;
+    font-weight: 700 !important;
+    font-size: 16pt !important;
+
+}
