@@ -1,14 +1,47 @@
+@font-face{
+    font-family: fontMarriage;
+    src: url("/assets/fonts/AlwynRegular.ttf");
+}
+
 mat-grid-tile {
     background: #E6E7E8;
 }
+/*mat-card *{
+    padding: 15px 20px 15px 20px;
+}*/
+mat-card-content{
+    font-size: 12pt;
+}
+.transparentCard{
+    background-color: transparent;
+}
+#landingTitle{
+    font-size: 60pt;
+    color: #eee;
+    vertical-align: middle;
+    font-family: fontMarriage;
+}
+#landingContent{
+    margin:40px;
+}
+#landingCover{
+    background: url("/assets/imgs/landingCover.jpg");
+}
 #landGrid{
-    margin: 15px!important;
+    margin: 0px!important;
 }
 #btnInicioCadastro{
     padding: 20px 50px 20px 50px  !important;
-    background-color: crimson !important;
+    background-color: indianred !important;
     color: white !important;
     font-weight: 700 !important;
     font-size: 16pt !important;
-
+}
+#listaLanding,  #listaLanding *{
+    color:white;
+    font-size: 16pt;
+}
+#listaLanding{
+    opacity: 0.8;
+    background-image: linear-gradient(-38deg, transparent, red);
 }

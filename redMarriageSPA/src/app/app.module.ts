@@ -6,6 +6,7 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatCardModule} from '@angular/material/card';
 import {MatListModule} from '@angular/material/list';
+import {MatMenuModule} from '@angular/material/menu';
 import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -37,7 +38,8 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
     MatCheckboxModule,
     MatGridListModule,
     MatCardModule,
-    MatListModule
+    MatListModule,
+    MatMenuModule
   ],
   providers: [],
   bootstrap: [AppComponent]
