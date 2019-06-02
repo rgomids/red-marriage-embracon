@@ -1,3 +1,77 @@
-<p>
-  perfil works!
-</p>
+<app-header></app-header>
+<mat-card id="formularioCadastro">
+    <mat-card-title>Conte-nos um pouco sobre vocês</mat-card-title>
+    <mat-card-content>
+        <form [formGroup]="formGroup" method="post" action="/dashboard">
+            <mat-vertical-stepper formArrayName="formArray" linear>
+                <mat-step formGroupName="0" [stepControl]="formArray?.get([0])"
+                    label="Seja bem vindo, somos a Embracon. Qual seu nome completo?">
+                    <div>
+                        <mat-form-field class="">
+                            <input matInput placeholder="Nome" />
+                        </mat-form-field>
+                        <mat-form-field class="">
+                            <input matInput placeholder="Sobrenome" /> </mat-form-field><br />
+                        <button mat-raised-button color="primary" matStepperNext type="button">
+                            Seguir
+                        </button>
+                    </div>
+                </mat-step>
+                <mat-step formGroupName="0" [stepControl]="formArray?.get([1])"
+                    label="Nos informe seu celular e endereço para buscarmos a solução">
+                    <div>
+                        <mat-form-field class="">
+                            <input matInput placeholder="Telefone" />
+                        </mat-form-field>
+                        <mat-form-field class="" style="width: 40%">
+                            <input matInput type="password" placeholder="Endereço" /> </mat-form-field><br />
+                        <button mat-raised-button color="primary" matStepperPrevious type="button">
+                            Anterior
+                        </button>
+                        <button mat-raised-button color="primary" matStepperNext type="button">
+                            Seguir
+                        </button>
+                    </div>
+                </mat-step>
+                <mat-step formGroupName="0" [stepControl]="formArray?.get([2])"
+                    label="Agora sua senha para protegermos seus dados">
+                    <div>
+                        <mat-form-field class="">
+                            <input matInput placeholder="Senha" type="password" />
+                        </mat-form-field>
+                        <mat-form-field class="">
+                            <input matInput placeholder="Confirmação" type="password" /> </mat-form-field><br />
+                        <button mat-raised-button color="primary" matStepperPrevious type="button">
+                            Anterior
+                        </button>
+                        <button mat-raised-button color="primary" matStepperNext type="button">
+                            Seguir
+                        </button>
+                    </div>
+                </mat-step>
+                <mat-step formGroupName="0" [stepControl]="formArray?.get([4])"
+                    label="Agora nos conte, o que tem no casamento dos seus sonhos?">
+                    <mat-card style="margin-top: 20px;">
+                        <mat-card-title>Selecione tudo que deseja para a sua festa</mat-card-title>
+                        <mat-card-content>
+                            <mat-grid-list cols="2" rowHeight="5:1" gutterSize="15px">
+                                <mat-grid-tile>
+                                    <mat-form-field class="">
+                                        <mat-checkbox matInput>Check me!</mat-checkbox>
+                                    </mat-form-field>
+                                    <mat-form-field class="">
+                                        <mat-checkbox matInput>Check me!</mat-checkbox>
+                                    </mat-form-field>
+                                </mat-grid-tile>
+                                <mat-grid-tile>
+                                    2
+                                </mat-grid-tile>
+                            </mat-grid-list>
+                        </mat-card-content>
+                    </mat-card>
+                </mat-step>
+            </mat-vertical-stepper>
+        </form>
+    </mat-card-content>
+</mat-card>
+<script></script>
