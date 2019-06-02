@@ -20,6 +20,11 @@ func init() {
 		),
 		beego.NSNamespace("/timelines",
 			beego.NSInclude(
+				&controllers.TimelinesController{},
+			),
+		),
+		beego.NSNamespace("/user",
+			beego.NSInclude(
 				&controllers.UserController{},
 			),
 		),
