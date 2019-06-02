@@ -20,6 +20,11 @@ func init() {
 	orm.RegisterModel(new(Timelines))
 }
 
+//TableName sets name of the table
+func (a *Timelines) TableName() string {
+	return "Timelines"
+}
+
 // AddTimelines insert a new Timelines into database and returns
 // last inserted ID on success.
 func AddTimelines(m *Timelines) (id int64, err error) {

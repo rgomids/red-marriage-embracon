@@ -22,6 +22,11 @@ func init() {
 	orm.RegisterModel(new(Step))
 }
 
+//TableName sets name of the table
+func (a *Step) TableName() string {
+	return "Step"
+}
+
 // AddStep insert a new Step into database and returns
 // last inserted ID on success.
 func AddStep(m *Step) (id int64, err error) {

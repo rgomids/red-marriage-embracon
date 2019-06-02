@@ -22,6 +22,11 @@ func init() {
 	orm.RegisterModel(new(Wedding))
 }
 
+//TableName sets name of the table
+func (a *Wedding) TableName() string {
+	return "Wedding"
+}
+
 // AddWedding insert a new Wedding into database and returns
 // last inserted ID on success.
 func AddWedding(m *Wedding) (id int64, err error) {

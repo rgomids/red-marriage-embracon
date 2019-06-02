@@ -20,6 +20,11 @@ func init() {
 	orm.RegisterModel(new(Account))
 }
 
+//TableName sets name of the table
+func (a *Account) TableName() string {
+	return "Account"
+}
+
 // AddAccount insert a new Account into database and returns
 // last inserted ID on success.
 func AddAccount(m *Account) (id int64, err error) {
