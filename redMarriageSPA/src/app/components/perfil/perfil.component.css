@@ -1,0 +1,9 @@
+#formularioCadastro{
+    margin: 60px;
+}
+mat-form-field{
+    margin: 20px;
+}
+mat-vertical-stepper button{
+    margin: 0 20px 0 20px !important;
+}
