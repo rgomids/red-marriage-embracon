@@ -4,9 +4,9 @@
       <h1 id="landingTitle">CAZO</h1>
     </mat-grid-tile>
   </mat-grid-list>
-  <mat-grid-list cols="2" rowHeight="2:1" gutterSize="15px" id="landingContent">
-    <mat-grid-tile>
-      <mat-card>
+  <mat-grid-list cols="3" rowHeight="2:1" gutterSize="15px" id="landingContent">
+    <mat-grid-tile colspan="2">
+      <mat-card class="transparentCard">
         <mat-card-title>Faça seu casamento acontecer</mat-card-title>
         <mat-card-subtitle>
           Ajudamos você a organizar o seu sonho
@@ -21,19 +21,22 @@
         </mat-card-content>
       </mat-card>
     </mat-grid-tile>
-    <mat-grid-tile >
+    <mat-grid-tile>
       <mat-card id="listaLanding">
         <mat-list role="list">
-            <mat-list-item role="listitem">Te ajudamos a guardar</mat-list-item>
-            <mat-list-item role="listitem">Te conectamos com quem estará pronto a fazer seu casamento acontecer</mat-list-item>
-            <mat-list-item role="listitem">Mimos para os noivos!</mat-list-item>
+          <mat-list-item role="listitem">Te ajudamos a guardar</mat-list-item>
+          <mat-list-item role="listitem">Te conectamos com quem estará pronto a fazer seu casamento acontecer
+          </mat-list-item>
+          <mat-list-item role="listitem">Mimos para os noivos!</mat-list-item>
         </mat-list>
       </mat-card>
     </mat-grid-tile>
   </mat-grid-list>
   <mat-grid-list cols="1" rowHeight="10:1" gutterSize="3px">
     <mat-grid-tile>
-      <button mat-raised-button color="primary" id="btnInicioCadastro">Planejar!</button>
+      <a href="/form">
+        <button mat-raised-button color="primary" id="btnInicioCadastro">Planejar!</button>
+      </a>
     </mat-grid-tile>
   </mat-grid-list>
 </mat-grid-list>

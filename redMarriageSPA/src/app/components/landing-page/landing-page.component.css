@@ -6,11 +6,14 @@
 mat-grid-tile {
     background: #E6E7E8;
 }
-mat-card *{
+/*mat-card *{
     padding: 15px 20px 15px 20px;
-}
+}*/
 mat-card-content{
     font-size: 12pt;
+}
+.transparentCard{
+    background-color: transparent;
 }
 #landingTitle{
     font-size: 60pt;
@@ -19,7 +22,7 @@ mat-card-content{
     font-family: fontMarriage;
 }
 #landingContent{
-    margin:15px;
+    margin:40px;
 }
 #landingCover{
     background: url("/assets/imgs/landingCover.jpg");
@@ -35,7 +38,10 @@ mat-card-content{
     font-size: 16pt !important;
 }
 #listaLanding,  #listaLanding *{
-    background-color: indianred;
     color:white;
     font-size: 16pt;
+}
+#listaLanding{
+    opacity: 0.8;
+    background-image: linear-gradient(-38deg, transparent, red);
 }
