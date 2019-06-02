@@ -10,17 +10,18 @@ import (
 )
 
 type User struct {
-	Id        int64  `orm:"auto"`
-	Name      string `orm:"size(128)"`
-	Surname   string `orm:"size(128)"`
-	Cpf       string `orm:"size(128)"`
-	Rg        string `orm:"size(128)"`
-	Cellphone string `orm:"size(128)"`
-	Phone     string `orm:"size(128)"`
-	Address   string `orm:"size(128)"`
-	IsActive  bool
-	Email     string `orm:"size(128)"`
-	Password  string `orm:"size(128)"`
+	ID        int64    `orm:"auto;column(id)" json:"id"`
+	Name      string   `orm:"size(128)" json:"name"`
+	Surname   string   `orm:"size(128)" json:"surname"`
+	Cpf       string   `orm:"size(128)" json:"cpf"`
+	Rg        string   `orm:"size(128)" json:"rg"`
+	Cellphone string   `orm:"size(128)" json:"cellphone"`
+	Phone     string   `orm:"size(128)" json:"phone"`
+	Address   string   `orm:"size(128)" json:"address"`
+	IsActive  bool     `json:"isactive"`
+	Email     string   `orm:"size(128)" json:"email"`
+	Password  string   `orm:"size(128)" json:"password"`
+	Account   *Account `orm:"column(account);rel(fk)" json:"account"`
 }
 
 func init() {
@@ -28,19 +29,19 @@ func init() {
 }
 
 // AddUser insert a new User into database and returns
-// last inserted Id on success.
+// last inserted ID on success.
 func AddUser(m *User) (id int64, err error) {
 	o := orm.NewOrm()
 	id, err = o.Insert(m)
 	return
 }
 
-// GetUserById retrieves User by Id. Returns error if
-// Id doesn't exist
-func GetUserById(id int64) (v *User, err error) {
+// GetUserByID retrieves User by ID. Returns error if
+// ID doesn't exist
+func GetUserByID(id int64) (v *User, err error) {
 	o := orm.NewOrm()
-	v = &User{Id: id}
-	if err = o.QueryTable(new(User)).Filter("Id", id).RelatedSel().One(v); err == nil {
+	v = &User{ID: id}
+	if err = o.QueryTable(new(User)).Filter("ID", id).RelatedSel().One(v); err == nil {
 		return v, nil
 	}
 	return nil, err
@@ -120,11 +121,11 @@ func GetAllUser(query map[string]string, fields []string, sortby []string, order
 	return nil, err
 }
 
-// UpdateUser updates User by Id and returns error if
+// UpdateUser updates User by ID and returns error if
 // the record to be updated doesn't exist
-func UpdateUserById(m *User) (err error) {
+func UpdateUserByID(m *User) (err error) {
 	o := orm.NewOrm()
-	v := User{Id: m.Id}
+	v := User{ID: m.ID}
 	// ascertain id exists in the database
 	if err = o.Read(&v); err == nil {
 		var num int64
@@ -135,15 +136,15 @@ func UpdateUserById(m *User) (err error) {
 	return
 }
 
-// DeleteUser deletes User by Id and returns error if
+// DeleteUser deletes User by ID and returns error if
 // the record to be deleted doesn't exist
 func DeleteUser(id int64) (err error) {
 	o := orm.NewOrm()
-	v := User{Id: id}
+	v := User{ID: id}
 	// ascertain id exists in the database
 	if err = o.Read(&v); err == nil {
 		var num int64
-		if num, err = o.Delete(&User{Id: id}); err == nil {
+		if num, err = o.Delete(&User{ID: id}); err == nil {
 			fmt.Println("Number of records deleted in database:", num)
 		}
 	}

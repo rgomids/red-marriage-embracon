@@ -53,7 +53,7 @@ func (c *AccountController) Post() {
 func (c *AccountController) GetOne() {
 	idStr := c.Ctx.Input.Param(":id")
 	id, _ := strconv.ParseInt(idStr, 0, 64)
-	v, err := models.GetAccountById(id)
+	v, err := models.GetAccountByID(id)
 	if err != nil {
 		c.Data["json"] = err.Error()
 	} else {
@@ -136,9 +136,9 @@ func (c *AccountController) GetAll() {
 func (c *AccountController) Put() {
 	idStr := c.Ctx.Input.Param(":id")
 	id, _ := strconv.ParseInt(idStr, 0, 64)
-	v := models.Account{Id: id}
+	v := models.Account{ID: id}
 	json.Unmarshal(c.Ctx.Input.RequestBody, &v)
-	if err := models.UpdateAccountById(&v); err == nil {
+	if err := models.UpdateAccountByID(&v); err == nil {
 		c.Data["json"] = "OK"
 	} else {
 		c.Data["json"] = err.Error()

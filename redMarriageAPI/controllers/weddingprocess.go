@@ -53,7 +53,7 @@ func (c *WeddingProcessController) Post() {
 func (c *WeddingProcessController) GetOne() {
 	idStr := c.Ctx.Input.Param(":id")
 	id, _ := strconv.ParseInt(idStr, 0, 64)
-	v, err := models.GetWeddingProcessById(id)
+	v, err := models.GetWeddingProcessByID(id)
 	if err != nil {
 		c.Data["json"] = err.Error()
 	} else {
@@ -136,9 +136,9 @@ func (c *WeddingProcessController) GetAll() {
 func (c *WeddingProcessController) Put() {
 	idStr := c.Ctx.Input.Param(":id")
 	id, _ := strconv.ParseInt(idStr, 0, 64)
-	v := models.WeddingProcess{Id: id}
+	v := models.WeddingProcess{ID: id}
 	json.Unmarshal(c.Ctx.Input.RequestBody, &v)
-	if err := models.UpdateWeddingProcessById(&v); err == nil {
+	if err := models.UpdateWeddingProcessByID(&v); err == nil {
 		c.Data["json"] = "OK"
 	} else {
 		c.Data["json"] = err.Error()

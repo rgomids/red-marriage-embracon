@@ -10,10 +10,12 @@ import (
 )
 
 type Step struct {
-	Id            int64 `orm:"auto"`
-	IsActive      bool
-	Description   string `orm:"size(128)"`
-	PriorityOrder int32
+	ID            int64        `orm:"auto;column(id)" json:"id"`
+	IsActive      bool         `json:"isactive"`
+	Description   string       `orm:"size(128)" json:"description"`
+	PriorityOrder int32        `json:"priorityorder"`
+	Wedding       *Wedding     `orm:"column(wedding);rel(fk)" json:"wedding"`
+	Timelines     []*Timelines `orm:"reverse(many)" json:"timelines"`
 }
 
 func init() {
@@ -21,19 +23,19 @@ func init() {
 }
 
 // AddStep insert a new Step into database and returns
-// last inserted Id on success.
+// last inserted ID on success.
 func AddStep(m *Step) (id int64, err error) {
 	o := orm.NewOrm()
 	id, err = o.Insert(m)
 	return
 }
 
-// GetStepById retrieves Step by Id. Returns error if
-// Id doesn't exist
-func GetStepById(id int64) (v *Step, err error) {
+// GetStepByID retrieves Step by ID. Returns error if
+// ID doesn't exist
+func GetStepByID(id int64) (v *Step, err error) {
 	o := orm.NewOrm()
-	v = &Step{Id: id}
-	if err = o.QueryTable(new(Step)).Filter("Id", id).RelatedSel().One(v); err == nil {
+	v = &Step{ID: id}
+	if err = o.QueryTable(new(Step)).Filter("ID", id).RelatedSel().One(v); err == nil {
 		return v, nil
 	}
 	return nil, err
@@ -113,11 +115,11 @@ func GetAllStep(query map[string]string, fields []string, sortby []string, order
 	return nil, err
 }
 
-// UpdateStep updates Step by Id and returns error if
+// UpdateStep updates Step by ID and returns error if
 // the record to be updated doesn't exist
-func UpdateStepById(m *Step) (err error) {
+func UpdateStepByID(m *Step) (err error) {
 	o := orm.NewOrm()
-	v := Step{Id: m.Id}
+	v := Step{ID: m.ID}
 	// ascertain id exists in the database
 	if err = o.Read(&v); err == nil {
 		var num int64
@@ -128,15 +130,15 @@ func UpdateStepById(m *Step) (err error) {
 	return
 }
 
-// DeleteStep deletes Step by Id and returns error if
+// DeleteStep deletes Step by ID and returns error if
 // the record to be deleted doesn't exist
 func DeleteStep(id int64) (err error) {
 	o := orm.NewOrm()
-	v := Step{Id: id}
+	v := Step{ID: id}
 	// ascertain id exists in the database
 	if err = o.Read(&v); err == nil {
 		var num int64
-		if num, err = o.Delete(&Step{Id: id}); err == nil {
+		if num, err = o.Delete(&Step{ID: id}); err == nil {
 			fmt.Println("Number of records deleted in database:", num)
 		}
 	}

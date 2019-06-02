@@ -53,7 +53,7 @@ func (c *UserController) Post() {
 func (c *UserController) GetOne() {
 	idStr := c.Ctx.Input.Param(":id")
 	id, _ := strconv.ParseInt(idStr, 0, 64)
-	v, err := models.GetUserById(id)
+	v, err := models.GetUserByID(id)
 	if err != nil {
 		c.Data["json"] = err.Error()
 	} else {
@@ -136,9 +136,9 @@ func (c *UserController) GetAll() {
 func (c *UserController) Put() {
 	idStr := c.Ctx.Input.Param(":id")
 	id, _ := strconv.ParseInt(idStr, 0, 64)
-	v := models.User{Id: id}
+	v := models.User{ID: id}
 	json.Unmarshal(c.Ctx.Input.RequestBody, &v)
-	if err := models.UpdateUserById(&v); err == nil {
+	if err := models.UpdateUserByID(&v); err == nil {
 		c.Data["json"] = "OK"
 	} else {
 		c.Data["json"] = err.Error()

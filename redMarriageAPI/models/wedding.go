@@ -10,10 +10,12 @@ import (
 )
 
 type Wedding struct {
-	Id          int64  `orm:"auto"`
-	Description string `orm:"size(128)"`
-	Style       string `orm:"size(128)"`
-	IsActive    bool
+	ID             int64           `orm:"auto;column(id)" json:"id"`
+	Description    string          `orm:"size(128)" json:"description"`
+	Style          string          `orm:"size(128)" json:"style"`
+	IsActive       bool            `json:"isactive"`
+	WeddingProcess *WeddingProcess `orm:"reverse(one)" json:"weddingprocess"`
+	Steps          []*Step         `orm:"reverse(many)" json:"steps"`
 }
 
 func init() {
@@ -21,19 +23,19 @@ func init() {
 }
 
 // AddWedding insert a new Wedding into database and returns
-// last inserted Id on success.
+// last inserted ID on success.
 func AddWedding(m *Wedding) (id int64, err error) {
 	o := orm.NewOrm()
 	id, err = o.Insert(m)
 	return
 }
 
-// GetWeddingById retrieves Wedding by Id. Returns error if
-// Id doesn't exist
-func GetWeddingById(id int64) (v *Wedding, err error) {
+// GetWeddingByID retrieves Wedding by ID. Returns error if
+// ID doesn't exist
+func GetWeddingByID(id int64) (v *Wedding, err error) {
 	o := orm.NewOrm()
-	v = &Wedding{Id: id}
-	if err = o.QueryTable(new(Wedding)).Filter("Id", id).RelatedSel().One(v); err == nil {
+	v = &Wedding{ID: id}
+	if err = o.QueryTable(new(Wedding)).Filter("ID", id).RelatedSel().One(v); err == nil {
 		return v, nil
 	}
 	return nil, err
@@ -113,11 +115,11 @@ func GetAllWedding(query map[string]string, fields []string, sortby []string, or
 	return nil, err
 }
 
-// UpdateWedding updates Wedding by Id and returns error if
+// UpdateWedding updates Wedding by ID and returns error if
 // the record to be updated doesn't exist
-func UpdateWeddingById(m *Wedding) (err error) {
+func UpdateWeddingByID(m *Wedding) (err error) {
 	o := orm.NewOrm()
-	v := Wedding{Id: m.Id}
+	v := Wedding{ID: m.ID}
 	// ascertain id exists in the database
 	if err = o.Read(&v); err == nil {
 		var num int64
@@ -128,15 +130,15 @@ func UpdateWeddingById(m *Wedding) (err error) {
 	return
 }
 
-// DeleteWedding deletes Wedding by Id and returns error if
+// DeleteWedding deletes Wedding by ID and returns error if
 // the record to be deleted doesn't exist
 func DeleteWedding(id int64) (err error) {
 	o := orm.NewOrm()
-	v := Wedding{Id: id}
+	v := Wedding{ID: id}
 	// ascertain id exists in the database
 	if err = o.Read(&v); err == nil {
 		var num int64
-		if num, err = o.Delete(&Wedding{Id: id}); err == nil {
+		if num, err = o.Delete(&Wedding{ID: id}); err == nil {
 			fmt.Println("Number of records deleted in database:", num)
 		}
 	}

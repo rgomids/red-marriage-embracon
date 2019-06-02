@@ -53,7 +53,7 @@ func (c *StepController) Post() {
 func (c *StepController) GetOne() {
 	idStr := c.Ctx.Input.Param(":id")
 	id, _ := strconv.ParseInt(idStr, 0, 64)
-	v, err := models.GetStepById(id)
+	v, err := models.GetStepByID(id)
 	if err != nil {
 		c.Data["json"] = err.Error()
 	} else {
@@ -136,9 +136,9 @@ func (c *StepController) GetAll() {
 func (c *StepController) Put() {
 	idStr := c.Ctx.Input.Param(":id")
 	id, _ := strconv.ParseInt(idStr, 0, 64)
-	v := models.Step{Id: id}
+	v := models.Step{ID: id}
 	json.Unmarshal(c.Ctx.Input.RequestBody, &v)
-	if err := models.UpdateStepById(&v); err == nil {
+	if err := models.UpdateStepByID(&v); err == nil {
 		c.Data["json"] = "OK"
 	} else {
 		c.Data["json"] = err.Error()

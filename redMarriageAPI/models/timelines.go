@@ -10,8 +10,10 @@ import (
 )
 
 type Timelines struct {
-	Id         int64 `orm:"auto"`
-	IsComplete bool
+	ID             int64           `orm:"auto;column(id)" json:"id"`
+	IsComplete     bool            `json:"isactive"`
+	Step           *Step           `orm:"rel(fk);column(step)" json:"step"`
+	WeddingProcess *WeddingProcess `orm:"rel(fk);column(weddingprocess)" json:"weddingprocess"`
 }
 
 func init() {
@@ -19,19 +21,19 @@ func init() {
 }
 
 // AddTimelines insert a new Timelines into database and returns
-// last inserted Id on success.
+// last inserted ID on success.
 func AddTimelines(m *Timelines) (id int64, err error) {
 	o := orm.NewOrm()
 	id, err = o.Insert(m)
 	return
 }
 
-// GetTimelinesById retrieves Timelines by Id. Returns error if
-// Id doesn't exist
-func GetTimelinesById(id int64) (v *Timelines, err error) {
+// GetTimelinesByID retrieves Timelines by ID. Returns error if
+// ID doesn't exist
+func GetTimelinesByID(id int64) (v *Timelines, err error) {
 	o := orm.NewOrm()
-	v = &Timelines{Id: id}
-	if err = o.QueryTable(new(Timelines)).Filter("Id", id).RelatedSel().One(v); err == nil {
+	v = &Timelines{ID: id}
+	if err = o.QueryTable(new(Timelines)).Filter("ID", id).RelatedSel().One(v); err == nil {
 		return v, nil
 	}
 	return nil, err
@@ -111,11 +113,11 @@ func GetAllTimelines(query map[string]string, fields []string, sortby []string, 
 	return nil, err
 }
 
-// UpdateTimelines updates Timelines by Id and returns error if
+// UpdateTimelines updates Timelines by ID and returns error if
 // the record to be updated doesn't exist
-func UpdateTimelinesById(m *Timelines) (err error) {
+func UpdateTimelinesByID(m *Timelines) (err error) {
 	o := orm.NewOrm()
-	v := Timelines{Id: m.Id}
+	v := Timelines{ID: m.ID}
 	// ascertain id exists in the database
 	if err = o.Read(&v); err == nil {
 		var num int64
@@ -126,15 +128,15 @@ func UpdateTimelinesById(m *Timelines) (err error) {
 	return
 }
 
-// DeleteTimelines deletes Timelines by Id and returns error if
+// DeleteTimelines deletes Timelines by ID and returns error if
 // the record to be deleted doesn't exist
 func DeleteTimelines(id int64) (err error) {
 	o := orm.NewOrm()
-	v := Timelines{Id: id}
+	v := Timelines{ID: id}
 	// ascertain id exists in the database
 	if err = o.Read(&v); err == nil {
 		var num int64
-		if num, err = o.Delete(&Timelines{Id: id}); err == nil {
+		if num, err = o.Delete(&Timelines{ID: id}); err == nil {
 			fmt.Println("Number of records deleted in database:", num)
 		}
 	}

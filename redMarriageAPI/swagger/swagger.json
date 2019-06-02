@@ -874,27 +874,169 @@
     "definitions": {
         "models.Account": {
             "title": "Account",
-            "type": "object"
+            "type": "object",
+            "properties": {
+                "ID": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "isactive": {
+                    "type": "boolean"
+                },
+                "users": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/models.User"
+                    }
+                },
+                "wedingprocess": {
+                    "$ref": "#/definitions/models.WeddingProcess"
+                }
+            }
         },
         "models.Step": {
             "title": "Step",
-            "type": "object"
+            "type": "object",
+            "properties": {
+                "description": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "isactive": {
+                    "type": "boolean"
+                },
+                "priorityorder": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "timelines": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/models.Timelines"
+                    }
+                },
+                "wedding": {
+                    "$ref": "#/definitions/models.Wedding"
+                }
+            }
         },
         "models.Timelines": {
             "title": "Timelines",
-            "type": "object"
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "isactive": {
+                    "type": "boolean"
+                },
+                "step": {
+                    "$ref": "#/definitions/models.Step"
+                },
+                "weddingprocess": {
+                    "$ref": "#/definitions/models.WeddingProcess"
+                }
+            }
         },
         "models.User": {
             "title": "User",
-            "type": "object"
+            "type": "object",
+            "properties": {
+                "account": {
+                    "$ref": "#/definitions/models.Account"
+                },
+                "address": {
+                    "type": "string"
+                },
+                "cellphone": {
+                    "type": "string"
+                },
+                "cpf": {
+                    "type": "string"
+                },
+                "email": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "isactive": {
+                    "type": "boolean"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "password": {
+                    "type": "string"
+                },
+                "phone": {
+                    "type": "string"
+                },
+                "rg": {
+                    "type": "string"
+                },
+                "surname": {
+                    "type": "string"
+                }
+            }
         },
         "models.Wedding": {
             "title": "Wedding",
-            "type": "object"
+            "type": "object",
+            "properties": {
+                "description": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "isactive": {
+                    "type": "boolean"
+                },
+                "steps": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/models.Step"
+                    }
+                },
+                "style": {
+                    "type": "string"
+                },
+                "weddingprocess": {
+                    "$ref": "#/definitions/models.WeddingProcess"
+                }
+            }
         },
         "models.WeddingProcess": {
             "title": "WeddingProcess",
-            "type": "object"
+            "type": "object",
+            "properties": {
+                "account": {
+                    "$ref": "#/definitions/models.Account"
+                },
+                "id": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "isactive": {
+                    "type": "boolean"
+                },
+                "timelines": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/models.Timelines"
+                    }
+                },
+                "wedding": {
+                    "$ref": "#/definitions/models.Wedding"
+                }
+            }
         }
     },
     "tags": [

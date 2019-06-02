@@ -10,8 +10,10 @@ import (
 )
 
 type Account struct {
-	Id       int64 `orm:"auto"`
-	IsActive bool
+	ID             int64           `orm:"auto;column(id)"`
+	IsActive       bool            `json:"isactive"`
+	WeddingProcess *WeddingProcess `orm:"column(wedding_process);rel(one)" json:"wedingprocess"`
+	Users          []*User         `orm:"reverse(many)" json:"users"`
 }
 
 func init() {
@@ -19,19 +21,19 @@ func init() {
 }
 
 // AddAccount insert a new Account into database and returns
-// last inserted Id on success.
+// last inserted ID on success.
 func AddAccount(m *Account) (id int64, err error) {
 	o := orm.NewOrm()
 	id, err = o.Insert(m)
 	return
 }
 
-// GetAccountById retrieves Account by Id. Returns error if
-// Id doesn't exist
-func GetAccountById(id int64) (v *Account, err error) {
+// GetAccountByID retrieves Account by ID. Returns error if
+// ID doesn't exist
+func GetAccountByID(id int64) (v *Account, err error) {
 	o := orm.NewOrm()
-	v = &Account{Id: id}
-	if err = o.QueryTable(new(Account)).Filter("Id", id).RelatedSel().One(v); err == nil {
+	v = &Account{ID: id}
+	if err = o.QueryTable(new(Account)).Filter("ID", id).RelatedSel().One(v); err == nil {
 		return v, nil
 	}
 	return nil, err
@@ -111,11 +113,11 @@ func GetAllAccount(query map[string]string, fields []string, sortby []string, or
 	return nil, err
 }
 
-// UpdateAccount updates Account by Id and returns error if
+// UpdateAccount updates Account by ID and returns error if
 // the record to be updated doesn't exist
-func UpdateAccountById(m *Account) (err error) {
+func UpdateAccountByID(m *Account) (err error) {
 	o := orm.NewOrm()
-	v := Account{Id: m.Id}
+	v := Account{ID: m.ID}
 	// ascertain id exists in the database
 	if err = o.Read(&v); err == nil {
 		var num int64
@@ -126,15 +128,15 @@ func UpdateAccountById(m *Account) (err error) {
 	return
 }
 
-// DeleteAccount deletes Account by Id and returns error if
+// DeleteAccount deletes Account by ID and returns error if
 // the record to be deleted doesn't exist
 func DeleteAccount(id int64) (err error) {
 	o := orm.NewOrm()
-	v := Account{Id: id}
+	v := Account{ID: id}
 	// ascertain id exists in the database
 	if err = o.Read(&v); err == nil {
 		var num int64
-		if num, err = o.Delete(&Account{Id: id}); err == nil {
+		if num, err = o.Delete(&Account{ID: id}); err == nil {
 			fmt.Println("Number of records deleted in database:", num)
 		}
 	}

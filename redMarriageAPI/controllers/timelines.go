@@ -53,7 +53,7 @@ func (c *TimelinesController) Post() {
 func (c *TimelinesController) GetOne() {
 	idStr := c.Ctx.Input.Param(":id")
 	id, _ := strconv.ParseInt(idStr, 0, 64)
-	v, err := models.GetTimelinesById(id)
+	v, err := models.GetTimelinesByID(id)
 	if err != nil {
 		c.Data["json"] = err.Error()
 	} else {
@@ -136,9 +136,9 @@ func (c *TimelinesController) GetAll() {
 func (c *TimelinesController) Put() {
 	idStr := c.Ctx.Input.Param(":id")
 	id, _ := strconv.ParseInt(idStr, 0, 64)
-	v := models.Timelines{Id: id}
+	v := models.Timelines{ID: id}
 	json.Unmarshal(c.Ctx.Input.RequestBody, &v)
-	if err := models.UpdateTimelinesById(&v); err == nil {
+	if err := models.UpdateTimelinesByID(&v); err == nil {
 		c.Data["json"] = "OK"
 	} else {
 		c.Data["json"] = err.Error()
