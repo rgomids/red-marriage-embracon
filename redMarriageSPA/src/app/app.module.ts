@@ -8,7 +8,7 @@ import {MatCardModule} from '@angular/material/card';
 import {MatListModule} from '@angular/material/list';
 import {MatMenuModule} from '@angular/material/menu';
 import { NgModule } from '@angular/core';
-
+import { MatStepperModule, MatFormFieldModule, MatInputModule } from '@angular/material';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PerfilComponent } from './components/perfil/perfil.component';
@@ -17,6 +17,7 @@ import { FornecedoresComponent } from './components/fornecedores/fornecedores.co
 import { HeaderComponent } from './components/header/header.component';
 import { LandingPageComponent } from './components/landing-page/landing-page.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -39,7 +40,11 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
     MatGridListModule,
     MatCardModule,
     MatListModule,
-    MatMenuModule
+    MatMenuModule,
+    MatStepperModule,
+    MatFormFieldModule,
+    ReactiveFormsModule,
+    MatInputModule
   ],
   providers: [],
   bootstrap: [AppComponent]
